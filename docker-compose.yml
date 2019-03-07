@@ -1,0 +1,10 @@
+version: '3'
+services:
+  zenhubhook:
+    image: echoulen/github-hook-for-zenhub:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - ZENHUB_TOKEN=123
+      - PR_CREATE_PIPELINE=In Progress
+      - PR_MERGE_PIPELINE=Resolved

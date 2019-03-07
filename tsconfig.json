@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": false,
+    "lib": ["es5", "es6", "scripthost"],
+    "types": ["node"],
+    "skipLibCheck": true,
+    "pretty": true,
+    "baseUrl": "."
+  },
+  "exclude": [
+    "node_modules",
+    "script",
+    "static",
+    "stories",
+    ".storybook"
+  ]
+}
