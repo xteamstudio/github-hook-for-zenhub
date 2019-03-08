@@ -42,9 +42,6 @@ export class WebhookService {
   }
 
   public async changeIssueStatus(repoId: number, issueId: string, pipelineId: string): Promise<void> {
-    console.log("url", `${this.baseUrl}/p1/repositories/${repoId}/issues/${issueId}/moves`);
-    console.log("pipelineId", pipelineId);
-    console.log("headers", this.headers);
     await axios.post(
       `${this.baseUrl}/p1/repositories/${repoId}/issues/${issueId}/moves`,
       {pipeline_id: pipelineId, position: "top"},
