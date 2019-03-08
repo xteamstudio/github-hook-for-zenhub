@@ -20,6 +20,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "github-webhook-event-types": "^1.2.1",
     "immutable": "^4.0.0-rc.12",
     "issue-regex": "^3.0.0",
     "ts-node": "^8.0.2",

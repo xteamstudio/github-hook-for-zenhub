@@ -1,8 +1,14 @@
 import axios from "axios";
+import {PullRequest} from "github-webhook-event-types";
 import {List, Set} from "immutable";
 import issueRegex from 'issue-regex';
-import {GithubPRHook} from "./types/GithubPRHook";
 import {ZenHubPipelines} from "./types/ZenHubPipelines";
+
+interface WebhookServiceProps {
+  token: string;
+  zenhubPipelineWhenPRCreated: string;
+  zenhubPipelineWhenPRClosed: string;
+}
 
 export class WebhookService {
   private baseUrl = "https://api.zenhub.io";
@@ -14,13 +20,14 @@ export class WebhookService {
   private readonly zenhubPipelineWhenPRCreated: string;
   private readonly zenhubPipelineWhenPRClosed: string;
 
-  constructor(token: string, zenhubPipelineWhenPRCreated: string, zenhubPipelineWhenPRClosed: string) {
+  constructor(props: WebhookServiceProps) {
+    const {token, zenhubPipelineWhenPRCreated, zenhubPipelineWhenPRClosed} = props;
     this.headers["X-Authentication-Token"] = token;
     this.zenhubPipelineWhenPRCreated = zenhubPipelineWhenPRCreated;
     this.zenhubPipelineWhenPRClosed = zenhubPipelineWhenPRClosed;
   }
 
-  public async process(hook: GithubPRHook): Promise<void> {
+  public async process(hook: PullRequest): Promise<void> {
     const repositoryId = hook.repository.id;
     const issueIds = WebhookService.getAllIssuesIds(hook);
     let pipelineId = null;
@@ -55,7 +62,7 @@ export class WebhookService {
     return pipeline ? pipeline.id : null;
   }
 
-  private static getAllIssuesIds(hook: GithubPRHook): Set<string> {
+  private static getAllIssuesIds(hook: PullRequest): Set<string> {
     const issues = List<string>(hook.pull_request.title.match(issueRegex()))
       .concat(List(hook.pull_request.body.match(issueRegex())))
       .map((issue) => issue.replace("#", ""));

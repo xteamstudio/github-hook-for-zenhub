@@ -251,6 +251,11 @@ fresh@0.5.2:
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
   integrity sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=
 
+github-webhook-event-types@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/github-webhook-event-types/-/github-webhook-event-types-1.2.1.tgz#3427ec2d7625457ef9c1bac5e929cb59b63bd667"
+  integrity sha512-S0/O8tggnJwNYx4Gp39pgarBjO9/bY5/PAY8zlx8HuacWVULqk05M9wmZ0n42ueN+YSPWx/1BAItBKzv//4GfA==
+
 http-errors@1.6.3, http-errors@~1.6.2, http-errors@~1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.6.3.tgz#8b55680bb4be283a0b5bf4ea2e38580be1d9320d"

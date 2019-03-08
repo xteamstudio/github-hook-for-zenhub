@@ -1,6 +1,6 @@
 import bodyParser from "body-parser";
 import express from "express";
-import {GithubPRHook} from "./src/types/GithubPRHook";
+import {PullRequest} from "github-webhook-event-types";
 import {WebhookService} from "./src/WebhookService";
 
 const port = process.env.PORT || 3000;
@@ -18,7 +18,7 @@ function startServer() {
   }));
 
   app.use("/", async (req, res) => {
-    const hook: GithubPRHook = JSON.parse(req.body.payload);
+    const hook: PullRequest = JSON.parse(req.body.payload);
     await webhookService.process(hook);
     res.end();
   });
