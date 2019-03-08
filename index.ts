@@ -9,7 +9,11 @@ const prCreatePipeline = process.env.PR_CREATE_PIPELINE || "";
 const prMergePipeline = process.env.PR_MERGE_PIPELINE || "";
 
 function startServer() {
-  const webhookService = new WebhookService(zenhubToken, prCreatePipeline, prMergePipeline);
+  const webhookService = new WebhookService({
+    zenhubToken,
+    zenhubPipelineWhenPRCreated: prCreatePipeline,
+    zenhubPipelineWhenPRClosed: prMergePipeline,
+  });
 
   const app = express();
   app.use(bodyParser.json());

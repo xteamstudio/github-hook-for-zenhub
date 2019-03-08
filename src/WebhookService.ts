@@ -5,7 +5,7 @@ import issueRegex from 'issue-regex';
 import {ZenHubPipelines} from "./types/ZenHubPipelines";
 
 interface WebhookServiceProps {
-  token: string;
+  zenhubToken: string;
   zenhubPipelineWhenPRCreated: string;
   zenhubPipelineWhenPRClosed: string;
 }
@@ -21,8 +21,8 @@ export class WebhookService {
   private readonly zenhubPipelineWhenPRClosed: string;
 
   constructor(props: WebhookServiceProps) {
-    const {token, zenhubPipelineWhenPRCreated, zenhubPipelineWhenPRClosed} = props;
-    this.headers["X-Authentication-Token"] = token;
+    const {zenhubToken, zenhubPipelineWhenPRCreated, zenhubPipelineWhenPRClosed} = props;
+    this.headers["X-Authentication-Token"] = zenhubToken;
     this.zenhubPipelineWhenPRCreated = zenhubPipelineWhenPRCreated;
     this.zenhubPipelineWhenPRClosed = zenhubPipelineWhenPRClosed;
   }
