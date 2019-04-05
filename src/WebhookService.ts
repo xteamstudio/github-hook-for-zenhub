@@ -36,9 +36,12 @@ export class WebhookService {
     } else if (hook.action === "closed" && hook.pull_request.merged === true) {
       pipelineId = await this.getPipelineId(repositoryId, this.zenhubPipelineWhenPRClosed);
     }
-    pipelineId && issueIds.forEach(async (issueId: string) => {
-      await this.changeIssueStatus(repositoryId, issueId, pipelineId);
-    });
+
+    if (pipelineId) {
+      for (const issueId of issueIds.toArray()) {
+        await this.changeIssueStatus(repositoryId, issueId, pipelineId);
+      }
+    }
   }
 
   public async changeIssueStatus(repoId: number, issueId: string, pipelineId: string): Promise<void> {
