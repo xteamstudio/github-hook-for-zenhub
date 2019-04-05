@@ -21,9 +21,9 @@ function startServer() {
     extended: true
   }));
 
-  app.use("/", async (req, res) => {
+  app.use("/", (req, res) => {
     const hook: PullRequest = JSON.parse(req.body.payload);
-    await webhookService.process(hook);
+    webhookService.process(hook);
     res.end();
   });
 
