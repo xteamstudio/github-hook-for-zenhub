@@ -31,7 +31,7 @@ export class WebhookService {
     const repositoryId = hook.repository.id;
     const issueIds = WebhookService.getAllIssuesIds(hook);
     let pipelineId = null;
-    if (hook.action === "opened" || hook.action === "reopened") {
+    if (hook.action === "opened" || hook.action === "reopened" || hook.action === "edited") {
       pipelineId = await this.getPipelineId(repositoryId, this.zenhubPipelineWhenPRCreated);
     } else if (hook.action === "closed" && hook.pull_request.merged === true) {
       pipelineId = await this.getPipelineId(repositoryId, this.zenhubPipelineWhenPRClosed);
